@@ -2,6 +2,7 @@ numpy
 pandas
 scikit-learn
 matplotlib
+requests
 tinytuya
 tuya-iot-python-sdk
 python-dotenv

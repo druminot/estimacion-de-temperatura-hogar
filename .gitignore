@@ -14,8 +14,9 @@ env/
 
 # Data files
 data/raw/
-*.csv
-*.xlsx
+data/*.csv
+data/*.json
+data/*.xlsx
 
 # Models
 models/*.pkl
