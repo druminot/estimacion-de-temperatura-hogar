@@ -36,3 +36,6 @@ Thumbs.db
 
 # Environment
 .env
+
+# HomeKit pairing config
+homekit_config.json
