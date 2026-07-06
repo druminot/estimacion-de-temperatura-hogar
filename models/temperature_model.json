@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-05T20:09:18.927271",
+  "generated_at": "2026-07-05T20:12:11.539703",
   "data_period": {
-    "start": "2026-06-28 20:06:07",
-    "end": "2026-07-05 20:01:26",
-    "records": 638
+    "start": "2026-06-28 20:12:06",
+    "end": "2026-07-05 20:09:14",
+    "records": 639
   },
   "cooling_rate_c_per_hour": -0.7613,
   "heating_rate_c_per_hour": 2.8894,
@@ -519,7 +519,7 @@
   ],
   "recommendations": {
     "target_temp": 20.0,
-    "optimal_pre_heat_minutes_evening": 123,
-    "optimal_pre_heat_minutes_morning": 123
+    "optimal_pre_heat_minutes_evening": 112,
+    "optimal_pre_heat_minutes_morning": 112
   }
 }

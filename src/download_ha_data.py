@@ -53,6 +53,10 @@ SENSORES_DEFAULT = [
     "sensor.humedad_media_casa",
 ]
 
+WEATHER_SENSORS = [
+    "weather.forecast_casa",
+]
+
 
 def ha_request(endpoint, params=None):
     """Hace una peticion a la API de Home Assistant."""
@@ -248,6 +252,55 @@ def continuous_read(sensors, interval_seconds=300):
             time.sleep(10)
 
 
+def download_weather_history(days=7):
+    """Descarga historial de temperatura exterior desde HA weather entity."""
+    print(f"Descargando historial meteorologico ({days} dias)...")
+
+    start_date = datetime.now() - timedelta(days=days)
+    end_date = datetime.now()
+    start_str = start_date.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    end_str = end_date.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+
+    weather_data = []
+    for sensor in WEATHER_SENSORS:
+        print(f"Descargando: {sensor} ...", end=" ", flush=True)
+        params = {"filter_entity_id": sensor, "end_time": end_str}
+        try:
+            data = ha_request(f"history/period/{start_str}", params=params)
+            if isinstance(data, list) and len(data) > 0:
+                records = data[0] if isinstance(data[0], list) else data
+                print(f"{len(records)} registros")
+                for r in records:
+                    attrs = r.get("attributes", {})
+                    temp = attrs.get("temperature")
+                    humidity = attrs.get("humidity")
+                    wind_speed = attrs.get("wind_speed")
+                    pressure = attrs.get("pressure")
+                    if temp is not None:
+                        weather_data.append({
+                            "timestamp": r.get("last_updated", "")[:19],
+                            "outdoor_temp": temp,
+                            "outdoor_humidity": humidity,
+                            "wind_speed": wind_speed,
+                            "pressure": pressure,
+                            "condition": r.get("state", ""),
+                        })
+            else:
+                print("sin datos")
+        except Exception as e:
+            print(f"error: {e}")
+
+    if weather_data:
+        csv_path = DATA_DIR / f"weather_ha_{start_date.strftime('%Y%m%d')}_{end_date.strftime('%Y%m%d')}.csv"
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=weather_data[0].keys())
+            writer.writeheader()
+            writer.writerows(weather_data)
+        print(f"Guardado: {csv_path} ({len(weather_data)} registros)")
+
+    return weather_data
+
+
 def main():
     parser = argparse.ArgumentParser(description="Descarga datos de temperatura desde Home Assistant")
     parser.add_argument("--days", type=int, default=1, help="Dias de historial a descargar (default: 1)")
@@ -259,12 +312,19 @@ def main():
     parser.add_argument("--interval", type=int, default=300, help="Intervalo en segundos para lectura continua")
     parser.add_argument("--output", help="Nombre del archivo de salida (sin extension)")
     parser.add_argument("--current", action="store_true", help="Solo leer valores actuales")
+    parser.add_argument("--weather", action="store_true", help="Descargar datos meteorologicos de HA")
 
     args = parser.parse_args()
 
     sensors = args.sensors or SENSORES_DEFAULT
 
+    if args.weather:
+        download_weather_history(args.days)
+        return
+
     if args.list_sensors:
+        list_sensors()
+        return
         list_sensors()
         return
 

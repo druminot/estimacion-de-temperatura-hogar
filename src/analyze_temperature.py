@@ -84,6 +84,16 @@ def load_tuya_data():
     return dfs
 
 
+def load_weather_data():
+    """Carga datos meteorologicos de HA."""
+    weather_files = sorted(DATA_DIR.glob("weather_ha_*.csv"))
+    if weather_files:
+        df = pd.read_csv(weather_files[-1], parse_dates=["timestamp"])
+        print(f"Cargando datos meteorologicos: {weather_files[-1].name} ({len(df)} registros)")
+        return df
+    return None
+
+
 def build_time_series(ha_df):
     """Construye series temporales por sensor desde datos HA."""
     series = {}
@@ -295,7 +305,56 @@ def calculate_heating_rate(temp_series, heating_mask=None, r11b_current=None, r1
     return avg_rate, details
 
 
-def predict_temperature(current_temp, hours_ahead, cooling_rate, heating_rate=None, target_temp=20.0):
+def correlate_outdoor_temp(temp_series, weather_df):
+    """
+    Calcula la correlacion entre temperatura interior y exterior,
+    y ajusta la tasa de enfriamiento segun la diferencia termica.
+    """
+    if weather_df is None or len(weather_df) < 5:
+        return None
+
+    weather_df = weather_df.set_index("timestamp")["outdoor_temp"].sort_index()
+    weather_df = weather_df[~weather_df.index.duplicated(keep="last")]
+
+    temp_series = temp_series.sort_index()
+    temp_series = temp_series[~temp_series.index.duplicated(keep="last")]
+
+    indoor_resampled = temp_series.resample("30min").mean().dropna()
+    outdoor_resampled = weather_df.resample("30min").mean().dropna()
+
+    common_idx = indoor_resampled.index.intersection(outdoor_resampled.index)
+    if len(common_idx) < 5:
+        return None
+
+    indoor = indoor_resampled.loc[common_idx]
+    outdoor = outdoor_resampled.loc[common_idx]
+
+    correlation, p_value = stats.pearsonr(indoor.values, outdoor.values)
+
+    delta_temp = indoor.values - outdoor.values
+    cooling_rate_by_delta = {}
+    delta_bins = [(0, 5), (5, 10), (10, 15), (15, 20)]
+    for low, high in delta_bins:
+        mask = (delta_temp >= low) & (delta_temp < high)
+        if mask.sum() >= 3:
+            cooling_rate_by_delta[f"{low}-{high}C"] = {
+                "mean_delta": round(float(np.mean(delta_temp[mask])), 1),
+                "mean_indoor": round(float(np.mean(indoor.values[mask])), 1),
+                "mean_outdoor": round(float(np.mean(outdoor.values[mask])), 1),
+                "n_samples": int(mask.sum()),
+            }
+
+    result = {
+        "correlation": round(correlation, 4),
+        "p_value": round(p_value, 4),
+        "mean_indoor": round(float(np.mean(indoor)), 1),
+        "mean_outdoor": round(float(np.mean(outdoor)), 1),
+        "mean_delta": round(float(np.mean(delta_temp)), 1),
+        "delta_temp_distribution": cooling_rate_by_delta,
+        "n_observations": len(common_idx),
+    }
+
+    return result
     """
     Predice la temperatura futura y calcula cuando encender la calefaccion.
 
@@ -547,6 +606,44 @@ def run_analysis(ha_df, tuya_dfs, do_plot=False, do_predict=False, predict_hours
             print(f"  Mediana: {np.median(rates):.3f} C/hora")
     else:
         print("\nNo se pudo calcular la tasa de calentamiento")
+
+    print("\n" + "=" * 60)
+    print("CORRELACION CON TEMPERATURA EXTERIOR")
+    print("=" * 60)
+
+    weather_df = load_weather_data()
+    outdoor_corr = None
+    current_outdoor = None
+
+    if weather_df is not None and len(weather_df) > 5:
+        main_sensor = "sensor.t_h_sensor_temperature" if "sensor.t_h_sensor_temperature" in series else "sensor.energy_meter_temperature"
+        if main_sensor in series:
+            outdoor_corr = correlate_outdoor_temp(series[main_sensor], weather_df)
+
+        if outdoor_corr:
+            print(f"\nCorrelacion interior/exterior: r = {outdoor_corr['correlation']:.3f} (p = {outdoor_corr['p_value']:.4f})")
+            print(f"  Temp interior media: {outdoor_corr['mean_indoor']}C")
+            print(f"  Temp exterior media: {outdoor_corr['mean_outdoor']}C")
+            print(f"  Diferencia media: {outdoor_corr['mean_delta']}C")
+            print(f"  Observaciones: {outdoor_corr['n_observations']}")
+
+            if outdoor_corr.get("delta_temp_distribution"):
+                print(f"\n  Distribucion por diferencia termica:")
+                for range_name, data in outdoor_corr["delta_temp_distribution"].items():
+                    print(f"    Delta {range_name}: interior={data['mean_indoor']}C, exterior={data['mean_outdoor']}C, n={data['n_samples']}")
+
+        current_outdoor = float(weather_df["outdoor_temp"].iloc[-1])
+        print(f"\nTemperatura exterior actual: {current_outdoor:.1f}C")
+
+        if cooling_rate and current_outdoor and outdoor_corr:
+            delta = float(series[main_sensor].iloc[-1]) - current_outdoor if main_sensor in series else None
+            if delta is not None:
+                adjusted_cooling = cooling_rate * (1 + 0.02 * abs(delta))
+                print(f"  Delta interior/exterior: {delta:.1f}C")
+                print(f"  Tasa enfriamiento ajustada por delta: {adjusted_cooling:.3f} C/hora")
+    else:
+        print("\nNo hay datos meteorologicos disponibles")
+        print("Ejecuta: python src/download_ha_data.py --weather --days 7")
 
     if cooling_rate and heating_rate:
         print("\n" + "=" * 60)
