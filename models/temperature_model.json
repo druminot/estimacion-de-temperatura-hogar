@@ -1,0 +1,525 @@
+{
+  "generated_at": "2026-07-05T20:09:18.927271",
+  "data_period": {
+    "start": "2026-06-28 20:06:07",
+    "end": "2026-07-05 20:01:26",
+    "records": 638
+  },
+  "cooling_rate_c_per_hour": -0.7613,
+  "heating_rate_c_per_hour": 2.8894,
+  "cooling_segments": [
+    {
+      "start": "2026-07-01 02:59:43",
+      "end": "2026-07-01 07:49:10",
+      "duration_hours": 4.824166666666667,
+      "rate_c_per_hour": -0.229,
+      "r_squared": 0.88,
+      "p_value": 0.0056,
+      "temp_start": 19.2,
+      "temp_end": 18.3
+    },
+    {
+      "start": "2026-07-01 03:59:35",
+      "end": "2026-07-01 08:49:03",
+      "duration_hours": 4.8244444444444445,
+      "rate_c_per_hour": -0.257,
+      "r_squared": 0.931,
+      "p_value": 0.0018,
+      "temp_start": 19.3,
+      "temp_end": 18.0
+    },
+    {
+      "start": "2026-07-01 04:59:28",
+      "end": "2026-07-01 09:48:57",
+      "duration_hours": 4.824722222222222,
+      "rate_c_per_hour": -0.222,
+      "r_squared": 0.934,
+      "p_value": 0.0017,
+      "temp_start": 19.0,
+      "temp_end": 17.8
+    },
+    {
+      "start": "2026-07-01 05:49:32",
+      "end": "2026-07-01 10:48:50",
+      "duration_hours": 4.988333333333333,
+      "rate_c_per_hour": -0.203,
+      "r_squared": 0.962,
+      "p_value": 0.0005,
+      "temp_start": 18.5,
+      "temp_end": 17.5
+    },
+    {
+      "start": "2026-07-01 06:49:16",
+      "end": "2026-07-01 11:36:35",
+      "duration_hours": 4.788611111111111,
+      "rate_c_per_hour": -0.139,
+      "r_squared": 0.593,
+      "p_value": 0.0732,
+      "temp_start": 18.4,
+      "temp_end": 18.0
+    },
+    {
+      "start": "2026-07-01 16:47:30",
+      "end": "2026-07-01 18:27:38",
+      "duration_hours": 1.6688888888888889,
+      "rate_c_per_hour": -0.906,
+      "r_squared": 0.617,
+      "p_value": 0.064,
+      "temp_start": 18.6,
+      "temp_end": 16.8
+    },
+    {
+      "start": "2026-07-01 17:47:02",
+      "end": "2026-07-01 18:37:27",
+      "duration_hours": 0.8402777777777778,
+      "rate_c_per_hour": -2.666,
+      "r_squared": 0.924,
+      "p_value": 0.0022,
+      "temp_start": 18.4,
+      "temp_end": 16.3
+    },
+    {
+      "start": "2026-07-01 18:02:21",
+      "end": "2026-07-01 18:49:25",
+      "duration_hours": 0.7844444444444445,
+      "rate_c_per_hour": -3.289,
+      "r_squared": 0.994,
+      "p_value": 0.0,
+      "temp_start": 18.3,
+      "temp_end": 15.8
+    },
+    {
+      "start": "2026-07-01 18:12:29",
+      "end": "2026-07-01 19:20:02",
+      "duration_hours": 1.1258333333333332,
+      "rate_c_per_hour": -1.347,
+      "r_squared": 0.55,
+      "p_value": 0.0914,
+      "temp_start": 17.8,
+      "temp_end": 16.3
+    },
+    {
+      "start": "2026-07-02 02:35:51",
+      "end": "2026-07-02 07:07:35",
+      "duration_hours": 4.528888888888889,
+      "rate_c_per_hour": -0.253,
+      "r_squared": 0.731,
+      "p_value": 0.0299,
+      "temp_start": 17.9,
+      "temp_end": 17.0
+    },
+    {
+      "start": "2026-07-02 03:34:57",
+      "end": "2026-07-02 08:07:27",
+      "duration_hours": 4.541666666666667,
+      "rate_c_per_hour": -0.353,
+      "r_squared": 0.957,
+      "p_value": 0.0007,
+      "temp_start": 18.2,
+      "temp_end": 16.7
+    },
+    {
+      "start": "2026-07-02 04:34:49",
+      "end": "2026-07-02 09:18:48",
+      "duration_hours": 4.733055555555556,
+      "rate_c_per_hour": -0.206,
+      "r_squared": 0.574,
+      "p_value": 0.0808,
+      "temp_start": 18.1,
+      "temp_end": 17.2
+    },
+    {
+      "start": "2026-07-02 09:36:57",
+      "end": "2026-07-02 14:35:43",
+      "duration_hours": 4.979444444444445,
+      "rate_c_per_hour": -0.146,
+      "r_squared": 0.612,
+      "p_value": 0.0658,
+      "temp_start": 17.7,
+      "temp_end": 17.1
+    },
+    {
+      "start": "2026-07-02 10:36:10",
+      "end": "2026-07-02 15:51:35",
+      "duration_hours": 5.256944444444445,
+      "rate_c_per_hour": -0.252,
+      "r_squared": 0.937,
+      "p_value": 0.0015,
+      "temp_start": 17.9,
+      "temp_end": 16.7
+    },
+    {
+      "start": "2026-07-02 11:36:01",
+      "end": "2026-07-02 16:25:02",
+      "duration_hours": 4.816944444444444,
+      "rate_c_per_hour": -0.346,
+      "r_squared": 0.972,
+      "p_value": 0.0003,
+      "temp_start": 18.0,
+      "temp_end": 16.2
+    },
+    {
+      "start": "2026-07-02 12:35:58",
+      "end": "2026-07-02 16:29:10",
+      "duration_hours": 3.8866666666666667,
+      "rate_c_per_hour": -0.434,
+      "r_squared": 0.885,
+      "p_value": 0.0052,
+      "temp_start": 17.7,
+      "temp_end": 15.7
+    },
+    {
+      "start": "2026-07-02 13:35:48",
+      "end": "2026-07-02 16:33:41",
+      "duration_hours": 2.964722222222222,
+      "rate_c_per_hour": -0.585,
+      "r_squared": 0.762,
+      "p_value": 0.0231,
+      "temp_start": 17.3,
+      "temp_end": 15.2
+    },
+    {
+      "start": "2026-07-02 14:35:43",
+      "end": "2026-07-02 16:38:21",
+      "duration_hours": 2.043888888888889,
+      "rate_c_per_hour": -0.959,
+      "r_squared": 0.684,
+      "p_value": 0.0423,
+      "temp_start": 17.1,
+      "temp_end": 14.7
+    },
+    {
+      "start": "2026-07-02 15:51:35",
+      "end": "2026-07-02 16:45:19",
+      "duration_hours": 0.8955555555555555,
+      "rate_c_per_hour": -2.651,
+      "r_squared": 0.791,
+      "p_value": 0.0177,
+      "temp_start": 16.7,
+      "temp_end": 14.2
+    },
+    {
+      "start": "2026-07-02 16:25:02",
+      "end": "2026-07-02 17:01:49",
+      "duration_hours": 0.6130555555555556,
+      "rate_c_per_hour": -4.036,
+      "r_squared": 0.911,
+      "p_value": 0.0031,
+      "temp_start": 16.2,
+      "temp_end": 13.7
+    },
+    {
+      "start": "2026-07-03 03:01:04",
+      "end": "2026-07-03 07:26:57",
+      "duration_hours": 4.431388888888889,
+      "rate_c_per_hour": -0.333,
+      "r_squared": 0.789,
+      "p_value": 0.018,
+      "temp_start": 17.9,
+      "temp_end": 16.8
+    },
+    {
+      "start": "2026-07-03 09:51:30",
+      "end": "2026-07-03 14:18:13",
+      "duration_hours": 4.445277777777778,
+      "rate_c_per_hour": -0.329,
+      "r_squared": 0.714,
+      "p_value": 0.0341,
+      "temp_start": 17.8,
+      "temp_end": 16.6
+    },
+    {
+      "start": "2026-07-03 10:50:34",
+      "end": "2026-07-03 14:49:12",
+      "duration_hours": 3.977222222222222,
+      "rate_c_per_hour": -0.425,
+      "r_squared": 0.84,
+      "p_value": 0.0101,
+      "temp_start": 18.2,
+      "temp_end": 16.7
+    },
+    {
+      "start": "2026-07-03 12:39:12",
+      "end": "2026-07-03 15:49:02",
+      "duration_hours": 3.1638888888888888,
+      "rate_c_per_hour": -0.296,
+      "r_squared": 0.633,
+      "p_value": 0.0584,
+      "temp_start": 17.7,
+      "temp_end": 16.5
+    },
+    {
+      "start": "2026-07-03 12:51:31",
+      "end": "2026-07-03 16:48:59",
+      "duration_hours": 3.957777777777778,
+      "rate_c_per_hour": -0.156,
+      "r_squared": 0.699,
+      "p_value": 0.038,
+      "temp_start": 17.2,
+      "temp_end": 16.4
+    },
+    {
+      "start": "2026-07-03 13:18:51",
+      "end": "2026-07-03 17:48:51",
+      "duration_hours": 4.5,
+      "rate_c_per_hour": -0.059,
+      "r_squared": 0.657,
+      "p_value": 0.0506,
+      "temp_start": 16.7,
+      "temp_end": 16.5
+    },
+    {
+      "start": "2026-07-03 14:18:13",
+      "end": "2026-07-03 18:24:56",
+      "duration_hours": 4.111944444444444,
+      "rate_c_per_hour": -0.119,
+      "r_squared": 0.642,
+      "p_value": 0.0552,
+      "temp_start": 16.6,
+      "temp_end": 16.0
+    },
+    {
+      "start": "2026-07-03 14:49:12",
+      "end": "2026-07-03 18:37:46",
+      "duration_hours": 3.8094444444444444,
+      "rate_c_per_hour": -0.233,
+      "r_squared": 0.643,
+      "p_value": 0.055,
+      "temp_start": 16.7,
+      "temp_end": 15.5
+    },
+    {
+      "start": "2026-07-03 15:49:02",
+      "end": "2026-07-03 19:35:08",
+      "duration_hours": 3.7683333333333335,
+      "rate_c_per_hour": -0.334,
+      "r_squared": 0.731,
+      "p_value": 0.03,
+      "temp_start": 16.5,
+      "temp_end": 15.3
+    },
+    {
+      "start": "2026-07-04 03:37:49",
+      "end": "2026-07-04 08:03:25",
+      "duration_hours": 4.426666666666667,
+      "rate_c_per_hour": -0.236,
+      "r_squared": 0.671,
+      "p_value": 0.0461,
+      "temp_start": 17.6,
+      "temp_end": 16.6
+    },
+    {
+      "start": "2026-07-04 04:37:41",
+      "end": "2026-07-04 09:03:16",
+      "duration_hours": 4.426388888888889,
+      "rate_c_per_hour": -0.277,
+      "r_squared": 0.775,
+      "p_value": 0.0205,
+      "temp_start": 17.4,
+      "temp_end": 16.5
+    },
+    {
+      "start": "2026-07-04 05:37:36",
+      "end": "2026-07-04 09:21:24",
+      "duration_hours": 3.73,
+      "rate_c_per_hour": -0.241,
+      "r_squared": 0.576,
+      "p_value": 0.0802,
+      "temp_start": 17.8,
+      "temp_end": 17.0
+    },
+    {
+      "start": "2026-07-04 09:51:33",
+      "end": "2026-07-04 14:46:43",
+      "duration_hours": 4.919444444444444,
+      "rate_c_per_hour": -0.26,
+      "r_squared": 0.79,
+      "p_value": 0.0179,
+      "temp_start": 17.5,
+      "temp_end": 16.5
+    },
+    {
+      "start": "2026-07-04 10:51:11",
+      "end": "2026-07-04 16:46:36",
+      "duration_hours": 5.923611111111111,
+      "rate_c_per_hour": -0.269,
+      "r_squared": 0.852,
+      "p_value": 0.0086,
+      "temp_start": 17.9,
+      "temp_end": 16.4
+    },
+    {
+      "start": "2026-07-04 14:46:43",
+      "end": "2026-07-04 22:14:55",
+      "duration_hours": 7.47,
+      "rate_c_per_hour": -0.092,
+      "r_squared": 0.572,
+      "p_value": 0.0819,
+      "temp_start": 16.5,
+      "temp_end": 15.8
+    },
+    {
+      "start": "2026-07-05 04:01:18",
+      "end": "2026-07-05 09:00:42",
+      "duration_hours": 4.99,
+      "rate_c_per_hour": -0.212,
+      "r_squared": 0.688,
+      "p_value": 0.041,
+      "temp_start": 17.0,
+      "temp_end": 16.3
+    },
+    {
+      "start": "2026-07-05 04:34:41",
+      "end": "2026-07-05 11:00:28",
+      "duration_hours": 6.429722222222222,
+      "rate_c_per_hour": -0.215,
+      "r_squared": 0.852,
+      "p_value": 0.0087,
+      "temp_start": 17.5,
+      "temp_end": 16.1
+    },
+    {
+      "start": "2026-07-05 05:34:06",
+      "end": "2026-07-05 12:00:20",
+      "duration_hours": 6.437222222222222,
+      "rate_c_per_hour": -0.166,
+      "r_squared": 0.838,
+      "p_value": 0.0104,
+      "temp_start": 17.3,
+      "temp_end": 16.0
+    },
+    {
+      "start": "2026-07-05 13:29:42",
+      "end": "2026-07-05 17:38:32",
+      "duration_hours": 4.147222222222222,
+      "rate_c_per_hour": -0.446,
+      "r_squared": 0.903,
+      "p_value": 0.0037,
+      "temp_start": 18.0,
+      "temp_end": 16.3
+    },
+    {
+      "start": "2026-07-05 14:29:07",
+      "end": "2026-07-05 17:42:51",
+      "duration_hours": 3.2288888888888887,
+      "rate_c_per_hour": -0.653,
+      "r_squared": 0.955,
+      "p_value": 0.0008,
+      "temp_start": 18.2,
+      "temp_end": 15.8
+    },
+    {
+      "start": "2026-07-05 15:13:49",
+      "end": "2026-07-05 17:47:22",
+      "duration_hours": 2.5591666666666666,
+      "rate_c_per_hour": -0.784,
+      "r_squared": 0.856,
+      "p_value": 0.0081,
+      "temp_start": 17.7,
+      "temp_end": 15.3
+    },
+    {
+      "start": "2026-07-05 16:02:22",
+      "end": "2026-07-05 17:53:10",
+      "duration_hours": 1.8466666666666667,
+      "rate_c_per_hour": -1.098,
+      "r_squared": 0.734,
+      "p_value": 0.0292,
+      "temp_start": 17.2,
+      "temp_end": 14.8
+    },
+    {
+      "start": "2026-07-05 17:01:47",
+      "end": "2026-07-05 18:01:38",
+      "duration_hours": 0.9975,
+      "rate_c_per_hour": -2.412,
+      "r_squared": 0.799,
+      "p_value": 0.0163,
+      "temp_start": 16.8,
+      "temp_end": 14.3
+    },
+    {
+      "start": "2026-07-05 17:38:32",
+      "end": "2026-07-05 18:16:17",
+      "duration_hours": 0.6291666666666667,
+      "rate_c_per_hour": -3.92,
+      "r_squared": 0.937,
+      "p_value": 0.0015,
+      "temp_start": 16.3,
+      "temp_end": 13.8
+    },
+    {
+      "start": "2026-07-05 17:42:51",
+      "end": "2026-07-05 19:15:29",
+      "duration_hours": 1.5438888888888889,
+      "rate_c_per_hour": -1.212,
+      "r_squared": 0.654,
+      "p_value": 0.0513,
+      "temp_start": 15.8,
+      "temp_end": 13.6
+    }
+  ],
+  "heating_segments": [
+    {
+      "source": "r11b_direct",
+      "start": "2026-06-30 18:28:00",
+      "end": "2026-06-30 18:52:00",
+      "duration_hours": 0.4,
+      "rate_c_per_hour": 4.565,
+      "r_squared": 0.78,
+      "p_value": 0.0196,
+      "temp_start": 18.1,
+      "temp_end": 19.9
+    },
+    {
+      "source": "r11b_direct",
+      "start": "2026-06-30 18:29:00",
+      "end": "2026-06-30 18:58:00",
+      "duration_hours": 0.48333333333333334,
+      "rate_c_per_hour": 3.599,
+      "r_squared": 0.727,
+      "p_value": 0.031,
+      "temp_start": 18.1,
+      "temp_end": 19.2
+    },
+    {
+      "source": "r11b_direct",
+      "start": "2026-06-30 18:34:00",
+      "end": "2026-06-30 18:59:00",
+      "duration_hours": 0.4166666666666667,
+      "rate_c_per_hour": 3.278,
+      "r_squared": 0.657,
+      "p_value": 0.0503,
+      "temp_start": 18.1,
+      "temp_end": 19.1
+    },
+    {
+      "source": "r11b_direct",
+      "start": "2026-06-30 20:19:00",
+      "end": "2026-06-30 21:11:00",
+      "duration_hours": 0.8666666666666667,
+      "rate_c_per_hour": 0.116,
+      "r_squared": 0.398,
+      "p_value": 0.1792,
+      "temp_start": 18.7,
+      "temp_end": 18.9
+    }
+  ],
+  "heating_schedule": [
+    {
+      "name": "morning",
+      "start": 5,
+      "end": 8
+    },
+    {
+      "name": "evening",
+      "start": 17,
+      "end": 24
+    }
+  ],
+  "recommendations": {
+    "target_temp": 20.0,
+    "optimal_pre_heat_minutes_evening": 123,
+    "optimal_pre_heat_minutes_morning": 123
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "current_temp": 14.1,
+  "target_temp": 20.0,
+  "cooling_rate_c_per_hour": -0.761,
+  "heating_rate_c_per_hour": null,
+  "time_to_target_hours": null,
+  "min_predicted_temp": 12.5,
+  "min_temp_at": "02:08",
+  "warmup_time_hours": null,
+  "optimal_start_time": null,
+  "predictions": [
+    {
+      "minute": 15,
+      "time": "20:23",
+      "hour_of_day": 20.38,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 30,
+      "time": "20:38",
+      "hour_of_day": 20.63,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 45,
+      "time": "20:53",
+      "hour_of_day": 20.88,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 60,
+      "time": "21:08",
+      "hour_of_day": 21.13,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 75,
+      "time": "21:23",
+      "hour_of_day": 21.38,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 90,
+      "time": "21:38",
+      "hour_of_day": 21.63,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 105,
+      "time": "21:53",
+      "hour_of_day": 21.88,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 120,
+      "time": "22:08",
+      "hour_of_day": 22.13,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 135,
+      "time": "22:23",
+      "hour_of_day": 22.38,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 150,
+      "time": "22:38",
+      "hour_of_day": 22.63,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 165,
+      "time": "22:53",
+      "hour_of_day": 22.88,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 180,
+      "time": "23:08",
+      "hour_of_day": 23.13,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 195,
+      "time": "23:23",
+      "hour_of_day": 23.38,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 210,
+      "time": "23:38",
+      "hour_of_day": 23.63,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 225,
+      "time": "23:53",
+      "hour_of_day": 23.88,
+      "heating_on": true,
+      "predicted_temp": 14.1
+    },
+    {
+      "minute": 240,
+      "time": "00:08",
+      "hour_of_day": 0.13,
+      "heating_on": false,
+      "predicted_temp": 14.0
+    },
+    {
+      "minute": 255,
+      "time": "00:23",
+      "hour_of_day": 0.38,
+      "heating_on": false,
+      "predicted_temp": 13.8
+    },
+    {
+      "minute": 270,
+      "time": "00:38",
+      "hour_of_day": 0.63,
+      "heating_on": false,
+      "predicted_temp": 13.6
+    },
+    {
+      "minute": 285,
+      "time": "00:53",
+      "hour_of_day": 0.88,
+      "heating_on": false,
+      "predicted_temp": 13.4
+    },
+    {
+      "minute": 300,
+      "time": "01:08",
+      "hour_of_day": 1.13,
+      "heating_on": false,
+      "predicted_temp": 13.2
+    },
+    {
+      "minute": 315,
+      "time": "01:23",
+      "hour_of_day": 1.38,
+      "heating_on": false,
+      "predicted_temp": 13.0
+    },
+    {
+      "minute": 330,
+      "time": "01:38",
+      "hour_of_day": 1.63,
+      "heating_on": false,
+      "predicted_temp": 12.8
+    },
+    {
+      "minute": 345,
+      "time": "01:53",
+      "hour_of_day": 1.88,
+      "heating_on": false,
+      "predicted_temp": 12.7
+    },
+    {
+      "minute": 360,
+      "time": "02:08",
+      "hour_of_day": 2.13,
+      "heating_on": false,
+      "predicted_temp": 12.5
+    }
+  ]
+}
