@@ -2,32 +2,61 @@
 
 Proyecto para la estimacion de temperatura en el hogar usando datos de sensores y modelos predictivos.
 
+## Objetivo
+
+Determinar el momento optimo para encender la calefaccion basandose en:
+- Tasa de enfriamiento del hogar cuando la calefaccion esta apagada
+- Tasa de calentamiento cuando la calefaccion esta encendida
+- Correlacion con temperatura exterior
+- Horarios de calefaccion: 17:00-00:00 y 05:00-08:00
+
+## Resultados del Modelo (5 Julio 2026)
+
+| Metrica | Valor |
+|---------|-------|
+| Enfriamiento (promedio) | -0.76 C/hora |
+| Enfriamiento (mediana) | -0.30 C/hora |
+| Calentamiento (promedio) | +2.89 C/hora |
+| Calentamiento (mediana) | +3.44 C/hora |
+| Correlacion interior/exterior | r = -0.512 |
+| Delta medio int/ext | +2.8 C |
+
+**Recomendacion actual**: Encender calefaccion ~2h antes del horario para llegar a 20C.
+
 ## Fuentes de Datos
 
-### SmartLife/Tuya (Termometros)
-Los termometros SmartLife usan la plataforma Tuya. Hay dos modos de conexion:
-- **API Cloud**: Via Tuya IoT Platform (necesita cuenta de desarrollador)
-- **Local**: Conexion directa al dispositivo en la red local (via `tinytuya`)
+### Home Assistant (principal)
+- Sensor T&H (temperatura y humedad interior)
+- R11-B Smart Wifi Thermostat (temperatura y setpoint)
+- Energy Meter (temperatura del medidor)
+- Weather forecast casa (temperatura exterior)
 
-### HomePod (Apple)
-El HomePod expone sensores de temperatura y humedad via HomeKit.
+### SmartLife/Tuya (complementario)
+- API Cloud: Limitado a 7 dias en plan gratuito
+- Local: Conexion directa via tinytuya
 
 ## Estructura del Proyecto
 
 ```
 estimacion-de-temperatura-hogar/
 ├── src/
-│   ├── main.py                      # Script principal
-│   ├── download_tuya_data.py        # Descarga datos de SmartLife/Tuya
-│   ├── download_homepod_data.py     # Descarga datos de HomePod
-│   └── __init__.py
-├── data/          # Datos de sensores y datasets
-├── models/        # Modelos predictivos entrenados
-├── notebooks/     # Jupyter notebooks para analisis exploratorio
-├── tests/         # Tests del proyecto
-├── docs/          # Documentacion adicional
-├── .env.example   # Plantilla de variables de entorno
-├── AGENTS.md      # Instrucciones del agente
+│   ├── analyze_temperature.py       # Analisis y modelo predictivo
+│   ├── collect_continuous.py        # Recoleccion continua de datos
+│   ├── download_ha_data.py          # Descarga datos de Home Assistant
+│   ├── download_tuya_history.py     # Historial de Tuya Cloud API
+│   ├── download_weather.py          # Datos de OpenWeatherMap
+│   ├── download_tuya_data.py        # Descarga datos SmartLife/Tuya
+│   ├── download_homepod_data.py     # Descarga datos HomePod
+│   ├── setup_tuya.py               # Configuracion Tuya Cloud
+│   ├── intercept_smartlife.py      # Intercepcion mitmproxy
+│   └── main.py                      # Script principal
+├── data/                            # Datos de sensores (CSV, JSON)
+├── models/                          # Modelos y predicciones
+├── venv/                            # Entorno virtual Python
+├── .env                             # Credenciales (no subir)
+├── .env.example                     # Plantilla de credenciales
+├── AGENTS.md                        # Instrucciones del agente
+├── devices_config.json               # Config de dispositivos (gitignore)
 └── README.md
 ```
 
@@ -47,45 +76,54 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
+### Para Home Assistant:
+- HA_URL: URL de HA (default: http://192.168.1.123:8123)
+- HA_TOKEN: Long-lived access token (generar en HA > Perfil > Seguridad)
+
 ### Para SmartLife/Tuya:
-1. Ir a [iot.tuya.com](https://iot.tuya.com/) y crear cuenta de desarrollador
+1. Ir a iot.tuya.com y crear cuenta de desarrollador
 2. Crear proyecto en Cloud Development
 3. Obtener Access ID y Access Secret
 4. Enlazar la app SmartLife al proyecto
-5. Obtener Device ID y Local Key de cada dispositivo
-
-### Para HomePod:
-1. Ejecutar el emparejamiento:
-```bash
-python src/download_homepod_data.py --pair --device-id DEVICE_ID --pin PIN --ip IP
-```
-2. El PIN se encuentra en la app Casa (Home) de Apple
 
 ## Uso
 
 ```bash
-# Escanear dispositivos en la red
-python src/main.py --discover
+# Analisis completo del modelo
+python src/analyze_temperature.py
 
-# Descargar datos de todas las fuentes
-python src/main.py --all
+# Analisis con graficos
+python src/analyze_temperature.py --plot
 
-# Solo SmartLife/Tuya (modo local)
-python src/main.py --tuya --tuya-local --tuya-ip 192.168.1.100 \
-  --tuya-device-id XXXX --tuya-local-key YYYY
+# Prediccion de temperatura (6 horas)
+python src/analyze_temperature.py --predict --hours 6
 
-# Solo SmartLife/Tuya (API Cloud)
-python src/main.py --tuya
+# Descargar datos de HA (7 dias)
+python src/download_ha_data.py --days 7
 
-# Solo HomePod
-python src/main.py --homepod
+# Descargar datos meteorologicos de HA
+python src/download_ha_data.py --weather --days 7
 
-# Lectura continua cada 5 minutos
-python src/main.py --all --continuous --interval 300
+# Recoleccion continua cada 5 minutos
+python src/collect_continuous.py
+
+# Lectura unica
+python src/collect_continuous.py --once
 ```
+
+## Dispositivos Configurados
+
+| Dispositivo | Tipo | Integracion | Entity |
+|-------------|------|-------------|--------|
+| T & H Sensor | Temperatura/Humedad | Tuya Cloud | sensor.t_h_sensor_temperature |
+| R11-B Thermostat | Termostato | Tuya Cloud | climate.r11_b_smart_wifi_thermostat |
+| Energy Meter | Medidor energia | Tuya Local | sensor.energy_meter_temperature |
+| Forecast Casa | Meteorologico | HA | weather.forecast_casa |
 
 ## Notas
 
-- Para HomeKit se necesita la libreria `homekit` (pip install homekit)
-- Los datos se guardan en la carpeta `data/` en formato JSON y CSV
-- El archivo `.env` con credenciales NO se sube al repositorio
+- Los datos se guardan en `data/` en formato CSV y JSON
+- El modelo se guarda en `models/temperature_model.json`
+- Las predicciones se guardan en `models/prediction_latest.json`
+- Tuya Cloud free plan: solo 7 dias de historial
+- `.env` y `data/*.csv` estan en `.gitignore`
