@@ -35,6 +35,12 @@ Proyecto para la estimacion de temperatura en el hogar usando datos de sensores 
 - Mantener el README.md actualizado con el estado del proyecto
 - Usar requirements.txt para dependencias
 
+### Optimizacion de contexto
+- Cuando el contexto alcance ~100k tokens, el agente debe compactar/resumir el estado del proyecto
+- La compactacion debe incluir: estado actual, archivos clave, decisiones tomadas, proximos pasos, datos importantes (tokens, URLs, credenciales referenciadas)
+- Mantener un resumen actualizado en este archivo o en `docs/context_summary.md`
+- Priorizar informacion accionable sobre historial de conversacion
+
 ### Comandos utiles
 - `git add -A && git commit -m "mensaje" && git push origin main` - Guardar y sincronizar cambios
 - `git pull origin main` - Traer ultimos cambios
